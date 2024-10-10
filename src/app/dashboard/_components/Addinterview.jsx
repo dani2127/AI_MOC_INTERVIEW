@@ -27,6 +27,7 @@ import {
   } from '../../../components/ui/dialog'
 import { Loader2, LoaderCircle } from 'lucide-react';
 import moment from 'moment';
+import { useRouter } from 'next/navigation';
 
   
   
@@ -38,6 +39,7 @@ function Addinterview() {
     const [jobExperience, setjobobExperience]= useState()
     const [loading,setLoading]=useState(false)
     const [jsonResponse,setJsonResponse]=useState([])
+    const router = useRouter
    
    
     const  onSubmit =async(e)=>{
@@ -62,6 +64,11 @@ function Addinterview() {
         createdAt:(moment().format('DD-MM-YYYY'))
       }).returning({mockId:MockInterview.mockId})
         console.log('Inserted ID',resp)
+        if (resp)
+        {
+          setOpenDialog(false)
+          router.push('/dashboard/interview/'+resp[0]?.mockId)
+        }
     }  
     else{  
       console.log('Error')
