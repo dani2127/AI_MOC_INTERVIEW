@@ -5,14 +5,14 @@ import { db } from '../../../../../utils/db';
 import {eq} from'drizzle-orm'
 import Webcam from 'react-webcam';
 import { Lightbulb, WebcamIcon } from 'lucide-react';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 
 function Interview({params}) {
     const[interviewData,setInterviewData]=useState();
     const[webCamEnabled, setWebCamEnabled]=useState(false)
 
       useEffect(()=>{
-        console.log(params.InterviewId)
+        console.log(params.interviewId)
         GetInterviewDetails()
       },[])
 
@@ -75,8 +75,10 @@ function Interview({params}) {
    
 
      <div className='flex justify-end itmes-end  '> 
-
+    <Link href={'/dashboard/interview/ '+params.interviewId+' /start'}> 
     <Button className='bg-green-600 text-white ' style={{ textTransform: 'none' }}>Start Interview</Button>
+     </Link>
+    
     
      </div>
     

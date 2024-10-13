@@ -39,7 +39,7 @@ function Addinterview() {
     const [jobExperience, setjobobExperience]= useState()
     const [loading,setLoading]=useState(false)
     const [jsonResponse,setJsonResponse]=useState([])
-    const router = useRouter
+    const router = useRouter()
    
    
     const  onSubmit =async(e)=>{
@@ -50,7 +50,7 @@ function Addinterview() {
 
       const result=await chatSession.sendMessage(InputPrompt)
       const MockJsonResp=(result.response.text()).replace('```json','').replace('```','')
-      console.log(JSON.parse(MockJsonResp))
+      console.log(MockJsonResp)
       setJsonResponse(MockJsonResp)
       if(MockJsonResp){ 
       const resp=await db.insert( MockInterview)
